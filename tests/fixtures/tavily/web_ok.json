@@ -1,0 +1,19 @@
+{
+  "_shape_source": "docs 2026-08-20",
+  "query": "sertchi conformance probe",
+  "results": [
+    {
+      "title": "Sertchi Conformance Probe Result One",
+      "url": "https://www.example.org/one?utm_source=test&id=7",
+      "content": "First web result snippet used for conformance testing. Deliberately the LOWER-scoring row, listed FIRST, to prove Sertchi never reorders by provider_score.",
+      "score": 0.35
+    },
+    {
+      "title": "Sertchi Conformance Probe Result Two",
+      "url": "https://example.com/two",
+      "content": "Second web result snippet used for conformance testing. Deliberately the HIGHER-scoring row, listed SECOND.",
+      "score": 0.81
+    }
+  ],
+  "response_time": 1.2
+}

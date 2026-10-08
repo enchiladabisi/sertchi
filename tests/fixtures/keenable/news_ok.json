@@ -1,0 +1,21 @@
+{
+  "_shape_source": "docs 2026-09-13",
+  "query": "sertchi conformance probe",
+  "results": [
+    {
+      "title": "Sertchi News Conformance Result One",
+      "url": "https://news.example.com/story-one",
+      "description": "First news description for conformance testing.",
+      "snippet": "First news snippet for conformance testing.",
+      "published_at": "2026-09-10T14:03:00Z",
+      "acquired_at": "2026-09-10T15:00:00Z"
+    },
+    {
+      "title": "Sertchi News Conformance Result Two",
+      "url": "https://news.example.org/story-two",
+      "description": "Second news description for conformance testing.",
+      "snippet": "Second news snippet for conformance testing.",
+      "acquired_at": "2026-09-11T09:00:00Z"
+    }
+  ]
+}

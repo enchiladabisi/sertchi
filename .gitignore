@@ -1,0 +1,11 @@
+__pycache__/
+
+# Private development notes — kept local, not published
+/CLAUDE.md
+/HANDOFF.md
+/etc/planning/
+
+# Secrets and per-machine state — must never be committed
+keys.json
+usage.json
+.env

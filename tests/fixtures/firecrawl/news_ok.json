@@ -1,0 +1,28 @@
+{
+  "_shape_source": "docs 2026-08-20",
+  "success": true,
+  "data": {
+    "news": [
+      {
+        "title": "Sertchi News Conformance Result One",
+        "url": "https://news.example.com/story-one",
+        "description": "First news description for conformance testing.",
+        "snippet": "First news snippet for conformance testing.",
+        "date": "2026-07-22",
+        "imageUrl": null,
+        "position": 1
+      },
+      {
+        "title": "Sertchi News Conformance Result Two",
+        "url": "https://news.example.org/story-two",
+        "description": "Second news description for conformance testing.",
+        "snippet": "Second news snippet for conformance testing.",
+        "date": null,
+        "imageUrl": null,
+        "position": 2
+      }
+    ]
+  },
+  "id": "sertchi-conformance-fixture-news",
+  "creditsUsed": 2
+}

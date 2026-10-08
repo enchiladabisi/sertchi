@@ -1,0 +1,22 @@
+{
+  "_shape_source": "docs 2026-08-20",
+  "success": true,
+  "data": {
+    "web": [
+      {
+        "title": "Sertchi Conformance Probe Result One",
+        "url": "https://www.example.org/one?utm_source=test&id=7",
+        "description": "First web result description used for conformance testing.",
+        "markdown": null
+      },
+      {
+        "title": "Sertchi Conformance Probe Result Two",
+        "url": "https://example.com/two",
+        "description": "Second web result description used for conformance testing.",
+        "markdown": null
+      }
+    ]
+  },
+  "id": "sertchi-conformance-fixture",
+  "creditsUsed": 2
+}

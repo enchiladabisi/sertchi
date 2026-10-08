@@ -1,0 +1,26 @@
+{
+  "_shape_source": "docs 2026-09-13",
+  "requestId": "sertchi-conformance-fixture",
+  "results": [
+    {
+      "id": "https://www.example.org/one?utm_source=test&id=7",
+      "title": "Sertchi Conformance Probe Result One",
+      "url": "https://www.example.org/one?utm_source=test&id=7",
+      "publishedDate": "2026-09-10T14:03:00.000Z",
+      "author": "Example Author",
+      "score": 0.83,
+      "highlights": ["First web highlight used for conformance testing.", "A second extract from the same page."]
+    },
+    {
+      "id": "https://example.com/two",
+      "title": "Sertchi Conformance Probe Result Two",
+      "url": "https://example.com/two",
+      "publishedDate": null,
+      "author": null,
+      "score": 0.71,
+      "highlights": ["Second web highlight used for conformance testing."]
+    }
+  ],
+  "costDollars": {"total": 0.008, "search": {"neural": 0.007}, "contents": {"highlights": 0.001}},
+  "searchTime": 812.5
+}

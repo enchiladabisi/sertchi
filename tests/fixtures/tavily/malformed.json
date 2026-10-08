@@ -1,0 +1,4 @@
+{
+  "_shape_source": "docs 2026-08-20",
+  "detail": "simulated malformed payload -- valid JSON but missing the 'results' field entirely, to exercise ProviderMalformedResponse without needing a truly unparseable body"
+}

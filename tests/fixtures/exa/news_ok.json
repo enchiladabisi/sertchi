@@ -1,0 +1,25 @@
+{
+  "_shape_source": "docs 2026-09-13",
+  "requestId": "sertchi-conformance-fixture-news",
+  "results": [
+    {
+      "id": "https://news.example.com/story-one",
+      "title": "Sertchi News Conformance Result One",
+      "url": "https://news.example.com/story-one",
+      "publishedDate": "2026-09-10T14:03:00.000Z",
+      "author": "Example Reporter",
+      "score": 0.9,
+      "highlights": ["First news highlight for conformance testing."]
+    },
+    {
+      "id": "https://news.example.org/story-two",
+      "title": "Sertchi News Conformance Result Two",
+      "url": "https://news.example.org/story-two",
+      "author": null,
+      "score": 0.64,
+      "highlights": ["Second news highlight for conformance testing."]
+    }
+  ],
+  "costDollars": {"total": 0.008, "search": {"neural": 0.007}, "contents": {"highlights": 0.001}},
+  "searchTime": 640.0
+}

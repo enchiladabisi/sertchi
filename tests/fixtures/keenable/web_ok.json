@@ -1,0 +1,20 @@
+{
+  "_shape_source": "docs 2026-09-13",
+  "query": "sertchi conformance probe",
+  "results": [
+    {
+      "title": "Sertchi Conformance Probe Result One",
+      "url": "https://www.example.org/one?utm_source=test&id=7",
+      "description": "First web result description used for conformance testing.",
+      "snippet": "First web result snippet used for conformance testing.",
+      "published_at": "2026-09-10T14:03:00Z",
+      "acquired_at": "2026-09-10T15:00:00Z"
+    },
+    {
+      "title": "Sertchi Conformance Probe Result Two",
+      "url": "https://example.com/two",
+      "description": "Second web result description used for conformance testing.",
+      "acquired_at": "2026-09-11T08:30:00Z"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "_shape_source": "docs 2026-08-20",
+  "query": "sertchi conformance probe news",
+  "results": [
+    {
+      "title": "Sertchi News Conformance Result One",
+      "url": "https://news.example.com/story-one",
+      "content": "First news snippet for conformance testing.",
+      "score": 0.71,
+      "published_date": "Wed, 22 Jul 2026 11:18:07 GMT"
+    },
+    {
+      "title": "Sertchi News Conformance Result Two",
+      "url": "https://news.example.org/story-two",
+      "content": "Second news snippet for conformance testing.",
+      "score": 0.35,
+      "published_date": "Thu, 23 Jul 2026 09:02:11 GMT"
+    }
+  ],
+  "response_time": 1.4
+}
