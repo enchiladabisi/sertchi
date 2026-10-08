@@ -156,6 +156,11 @@ DEFAULTS: dict[str, ProviderDefaults] = {
     Provider.EXA.value: ProviderDefaults(
         quota=10_000_000, quota_kind=QuotaKind.MONTHLY, plan="free", reserve=50_000
     ),
+    # Brave: the $5/month free credit, in micro-dollars like Exa (the adapter
+    # bills 5,000 per search, so ~1,000 searches). Reserve = five searches.
+    Provider.BRAVE.value: ProviderDefaults(
+        quota=5_000_000, quota_kind=QuotaKind.MONTHLY, plan="free", reserve=25_000
+    ),
     Provider.TAVILY.value: ProviderDefaults(
         quota=1000, quota_kind=QuotaKind.MONTHLY, plan="free", reserve=10
     ),

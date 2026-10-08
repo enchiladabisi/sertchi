@@ -26,10 +26,13 @@ class SearchType(str, Enum):
 
 
 class Provider(str, Enum):
-    """The six providers Sertchi wraps.
+    """The seven providers Sertchi wraps.
 
-    Declared in ABUNDANCE-THEN-QUALITY ORDER: Keenable #1, Exa #2, Tavily #3,
-    Firecrawl #4, Serper #5, DDG #6/last (user decision 2026-09-13; evidence,
+    Declared in ABUNDANCE-THEN-QUALITY ORDER: Keenable #1, Exa #2, Brave #3,
+    Tavily #4, Firecrawl #5, Serper #6, DDG #7/last (user decision
+    2026-09-13; Brave slotted in 2026-10-08 after Exa -- its ~1,000-search
+    monthly pool is Tavily-sized, but it scores 75 on the Artificial Analysis
+    index vs Tavily's 65.6; evidence,
     including the independent Artificial Analysis Search Index, in
     etc/planning/NEW-PROVIDERS.md §5.3). This is NOT a pure quality ranking,
     and that is deliberate: Keenable leads because its 100,000/month free
@@ -49,6 +52,7 @@ class Provider(str, Enum):
 
     KEENABLE = "keenable"
     EXA = "exa"
+    BRAVE = "brave"
     TAVILY = "tavily"
     FIRECRAWL = "firecrawl"
     SERPER = "serper"

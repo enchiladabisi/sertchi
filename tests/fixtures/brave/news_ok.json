@@ -1,0 +1,21 @@
+{
+  "_shape_source": "docs 2026-10-08",
+  "type": "news",
+  "query": {"original": "sertchi conformance probe"},
+  "results": [
+    {
+      "title": "Sertchi News Probe One",
+      "url": "https://news.example.org/one",
+      "description": "First news <strong>row</strong>.",
+      "page_age": "2026-10-07T09:30:00",
+      "age": "1 day ago",
+      "meta_url": {"hostname": "news.example.org"}
+    },
+    {
+      "title": "Sertchi News Probe Two",
+      "url": "https://example.com/news-two",
+      "description": "Second news row with no page_age.",
+      "age": "3 days ago"
+    }
+  ]
+}

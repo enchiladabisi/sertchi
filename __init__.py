@@ -149,6 +149,7 @@ from .providers.base import REGISTRY, ProviderOperationalError, SearchProvider
 # registers its instance at module scope. Nothing else in this file knows a
 # provider's identity, so this is the only provider-specific line here.
 from .providers import ddg as _ddg  # noqa: F401  (registration side effect)
+from .providers import brave as _brave  # noqa: F401
 from .providers import exa as _exa  # noqa: F401
 from .providers import firecrawl as _firecrawl  # noqa: F401
 from .providers import keenable as _keenable  # noqa: F401
@@ -397,6 +398,12 @@ def _select_candidates(
 #: 2,500-credit grant weighs like ~625 renewing searches.
 ONE_TIME_GRANT_DISCOUNT = 0.25
 
+#: Most of the first-pick probability Keenable may hold (user decision
+#: 2026-10-08). Its 100k/month pool would otherwise win ~97% of draws; capped,
+#: it wins at most half and the rest is split among the other metered
+#: providers by their own weights. Below the cap its natural share stands.
+KEENABLE_SHARE_CAP = 0.5
+
 #: The draw's randomness source. Module-level so a test can seed it.
 _rng = random.Random()
 
@@ -418,7 +425,8 @@ def _draw_weight(candidate: _Candidate) -> float | None:
 def _draw_order(candidates: Sequence[_Candidate]) -> list[_Candidate]:
     """``search()``'s try order (user decision 2026-09-26): weighted random
     by searches left, without replacement, then every unmetered provider
-    (DDG) after all of them, in declaration order.
+    (DDG) after all of them, in declaration order. Keenable's weight is
+    capped first (``_cap_keenable``, user decision 2026-10-08).
 
     Efraimidis-Spirakis: each candidate draws key ``log(u) / w`` and the
     highest key goes first, so the first pick lands on a candidate with
@@ -428,17 +436,37 @@ def _draw_order(candidates: Sequence[_Candidate]) -> list[_Candidate]:
     ``multi_search()`` never calls this: it asks everyone, and its dedupe
     tiebreak stays on declaration order.
     """
-    weighted: list[tuple[float, _Candidate]] = []
+    weights: list[tuple[float, _Candidate]] = []
     last_resort: list[_Candidate] = []
     for candidate in candidates:
         weight = _draw_weight(candidate)
         if weight is None:
             last_resort.append(candidate)
         else:
-            u = 1.0 - _rng.random()  # (0, 1], so log() is defined
-            weighted.append((math.log(u) / weight, candidate))
-    weighted.sort(key=lambda pair: pair[0], reverse=True)
-    return [candidate for _, candidate in weighted] + last_resort
+            weights.append((weight, candidate))
+    keyed: list[tuple[float, _Candidate]] = []
+    for weight, candidate in _cap_keenable(weights):
+        u = 1.0 - _rng.random()  # (0, 1], so log() is defined
+        keyed.append((math.log(u) / weight, candidate))
+    keyed.sort(key=lambda pair: pair[0], reverse=True)
+    return [candidate for _, candidate in keyed] + last_resort
+
+
+def _cap_keenable(
+    weights: list[tuple[float, _Candidate]],
+) -> list[tuple[float, _Candidate]]:
+    """Shrink Keenable's weight so its first-pick share is at most
+    ``KEENABLE_SHARE_CAP``. Recomputed every call from the live balances, so
+    the others' split always tracks their current headroom. No-op when
+    Keenable is absent, the only metered candidate, or already under the cap."""
+    others = sum(w for w, c in weights if c.provider is not Provider.KEENABLE)
+    if others <= 0:
+        return weights
+    ceiling = others * KEENABLE_SHARE_CAP / (1.0 - KEENABLE_SHARE_CAP)
+    return [
+        (min(w, ceiling) if c.provider is Provider.KEENABLE else w, c)
+        for w, c in weights
+    ]
 
 
 # --------------------------------------------------------------------------

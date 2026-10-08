@@ -41,7 +41,7 @@ class TypesTest(unittest.TestCase):
         # itself lives in etc/planning/NEW-PROVIDERS.md §5.3, not here.
         self.assertEqual(
             [p.value for p in Provider],
-            ["keenable", "exa", "tavily", "firecrawl", "serper", "ddg"],
+            ["keenable", "exa", "brave", "tavily", "firecrawl", "serper", "ddg"],
         )
 
     def test_search_type_has_only_web_and_news(self) -> None:

@@ -902,6 +902,35 @@ class OrchestratorDrawOrderTest(_SandboxedOrchestratorTest):
         # 0.25/1.25 would pass with the discount deleted (negative control).
         self.assertAlmostEqual(share, 0.20, delta=0.03)
 
+    def test_keenable_is_capped_at_half_of_first_picks(self) -> None:
+        """A 100k pool would win ~99% uncapped. Capped, Keenable gets half and
+        the other half is split by the others' own weights (Tavily 1000,
+        Serper 1000 x 0.25 = 250)."""
+        usage.configure(Provider.KEENABLE, quota=100_010, reserve_credits=10)
+        usage.configure(Provider.TAVILY, quota=1010, reserve_credits=10)
+        usage.configure(Provider.SERPER, quota=1010, reserve_credits=10)
+        providers = [Provider.KEENABLE, Provider.TAVILY, Provider.SERPER]
+        # Literals, not derived from the constant (negative control).
+        self.assertAlmostEqual(
+            self.first_pick_share(providers, Provider.KEENABLE), 0.50, delta=0.03
+        )
+        self.assertAlmostEqual(
+            self.first_pick_share(providers, Provider.TAVILY), 0.40, delta=0.03
+        )
+        self.assertAlmostEqual(
+            self.first_pick_share(providers, Provider.SERPER), 0.10, delta=0.03
+        )
+
+    def test_keenable_alone_is_still_drawn(self) -> None:
+        """With no other metered candidate there is nothing to cap against;
+        DDG still comes after it."""
+        usage.configure(Provider.KEENABLE, quota=100_010, reserve_credits=10)
+        candidates = [self.candidate(p) for p in (Provider.KEENABLE, Provider.DDG)]
+        order = sertchi._draw_order(candidates)
+        self.assertEqual(
+            [c.provider for c in order], [Provider.KEENABLE, Provider.DDG]
+        )
+
     def test_ddg_is_always_last(self) -> None:
         """DDG has no quota: never drawn, always tried after every metered
         provider -- even one with almost nothing left."""

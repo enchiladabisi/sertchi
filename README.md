@@ -1,12 +1,12 @@
 # Sertchi
 
-**One search box for six search engines.** You ask Sertchi a question, it
+**One search box for seven search engines.** You ask Sertchi a question, it
 picks a search service that still has free searches left, and you get back
 results in the same simple shape every time — no matter who actually
 answered.
 
-Think of it like a universal remote. Keenable, Exa, Tavily, Firecrawl,
-Serper and DuckDuckGo all speak slightly different languages and all have
+Think of it like a universal remote. Keenable, Exa, Brave, Tavily,
+Firecrawl, Serper and DuckDuckGo all speak slightly different languages and all have
 their own free limits. Sertchi speaks all of them, keeps track of how much
 of each free allowance you've used, and quietly moves on to the next one if
 one is down, busy, or used up. Your code only ever learns one way to search.
@@ -73,8 +73,9 @@ companies change their deals, so double-check):
 
 | Service | Needs a key? | Free allowance Sertchi assumes | Good at |
 |---|---|---|---|
-| **Keenable** | yes | 100,000 searches a month | Huge free pool, so it handles most of your everyday searches |
+| **Keenable** | yes | 100,000 searches a month | Huge free pool, so it handles about half of your searches |
 | **Exa** | yes | $10 of credit a month (about 1,250 searches) | Very fresh news |
+| **Brave** | yes | $5 of credit a month (about 1,000 searches) | Its own independent index, strong all-rounder |
 | **Tavily** | yes | 1,000 a month | Solid all-rounder |
 | **Firecrawl** | yes | 1,000 credits a month | Good backup |
 | **Serper** | yes | 2,500, one time only (never refills) | Google-style results |
@@ -86,6 +87,7 @@ from the folder *above* `sertchi/`:
 ```sh
 python3 -m sertchi keys set keenable
 python3 -m sertchi keys set exa
+python3 -m sertchi keys set brave
 ```
 
 It asks for the key on a hidden prompt, so nothing shows up while you
@@ -240,10 +242,11 @@ You don't have to babysit any of this. It just happens:
   searches as a cushion, in case two of your programs search at the exact
   same moment.
 - **It spreads the load sensibly.** Each search goes to a service picked at
-  random, but weighted by how many searches it has left. The service with
-  the biggest free pile does most of the work, and the small ones stay
-  saved for backup. Serper's one-time allowance gets used extra sparingly,
-  since it never comes back.
+  random, but weighted by how many searches it has left. Keenable, with
+  by far the biggest free pile, is capped at half of all picks, so it
+  still does the most work while the others stay in regular use, split
+  by what each has left. Serper's one-time allowance gets used extra
+  sparingly, since it never comes back.
 - **DuckDuckGo goes last.** It only gets asked when every other option is
   out.
 - **It backs off from broken services.** If one keeps failing, Sertchi

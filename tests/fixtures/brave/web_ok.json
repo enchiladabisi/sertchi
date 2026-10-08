@@ -1,0 +1,24 @@
+{
+  "_shape_source": "docs 2026-10-08",
+  "type": "search",
+  "query": {"original": "sertchi conformance probe", "more_results_available": true},
+  "web": {
+    "type": "search",
+    "results": [
+      {
+        "title": "Sertchi &amp; Conformance <strong>Probe</strong> Result One",
+        "url": "https://www.example.org/one?utm_source=test&id=7",
+        "description": "First web <strong>result</strong> used for conformance testing &amp; nothing else.",
+        "page_age": "2026-10-06T14:03:00",
+        "age": "2 days ago",
+        "thumbnail": {"src": "https://imgs.example.org/one.png"}
+      },
+      {
+        "title": "Sertchi Conformance Probe Result Two",
+        "url": "https://example.com/two",
+        "description": "Second web result with only a relative age.",
+        "age": "3 weeks ago"
+      }
+    ]
+  }
+}
